@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Fatima ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <div id="stars" aria-hidden="true"></div>
+  <div id="hearts-layer" aria-hidden="true"></div>
+
+  <audio id="bgMusic" src="assets/music/piano.mp3" loop preload="auto"></audio>
+  <audio id="birthdaySong" src="assets/music/happy-birthday.mp3" preload="auto"></audio>
+
+  <button id="muteBtn" class="mute-btn" type="button" aria-label="Toggle music" title="Toggle music">🔊</button>
+
+  <!-- Scene 1 – The Beginning -->
+  <section id="scene1" class="scene active" aria-label="The Beginning">
+    <div class="content scene1-content">
+      <p id="introLine" class="fade-line hidden">Someone very special has a message for you...</p>
+      <h1 id="birthdayLine" class="birthday-line hidden">Happy Birthday, Fatima ❤️</h1>
+      <button id="startBtn" class="primary-btn hidden" type="button">Start ✨</button>
+    </div>
+  </section>
+
+  <!-- Scene 2 – A Magical Journey -->
+  <section id="scene2" class="scene" aria-label="A Magical Journey">
+    <div class="content journey-content">
+      <p id="journeyText" class="journey-text"></p>
+      <button id="continueBtn" class="primary-btn hidden" type="button">Continue →</button>
+    </div>
+  </section>
+
+  <!-- Scene 3 – Birthday Cake -->
+  <section id="scene3" class="scene" aria-label="Birthday Cake">
+    <div class="content cake-content">
+      <p id="wishText" class="wish-text">Make a wish...</p>
+      <div id="cake" class="cake" role="button" tabindex="0" aria-label="Tap the birthday cake">
+        <div class="candles" aria-hidden="true">
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+          <div class="candle"><span class="flame"></span></div>
+        </div>
+        <div class="cake-frosting" aria-hidden="true"></div>
+        <div class="cake-layer cake-top" aria-hidden="true"></div>
+        <div class="cake-layer cake-middle" aria-hidden="true"></div>
+        <div class="cake-layer cake-bottom" aria-hidden="true"></div>
+        <div class="cake-plate" aria-hidden="true"></div>
+      </div>
+      <p id="cakeMessage" class="cake-message hidden"></p>
+      <button id="cakeContinueBtn" class="primary-btn hidden" type="button">Continue →</button>
+    </div>
+  </section>
+
+  <!-- Scene 4 – Your Letter -->
+  <section id="scene4" class="scene" aria-label="Your Letter">
+    <div class="content letter-content">
+      <p id="letterPrompt" class="letter-prompt">Someone wrote you a letter...</p>
+      <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Open the envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-letter">
+          <div class="letter-paper">
+            <p id="letterText" class="letter-text"></p>
+          </div>
+        </div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-seal">❤️</div>
+      </div>
+      <button id="letterContinueBtn" class="primary-btn hidden" type="button">Continue →</button>
+    </div>
+  </section>
+  <section id="scene5" class="scene" aria-label="Our Memories"><div class="content"><p class="placeholder">Scene 5 — Our Memories (coming soon)</p></div></section>
+  <section id="scene6" class="scene" aria-label="Reasons I Love You"><div class="content"><p class="placeholder">Scene 6 — Reasons I Love You (coming soon)</p></div></section>
+  <section id="scene7" class="scene" aria-label="Mini Game"><div class="content"><p class="placeholder">Scene 7 — Mini Game (coming soon)</p></div></section>
+  <section id="scene8" class="scene" aria-label="The Future"><div class="content"><p class="placeholder">Scene 8 — The Future (coming soon)</p></div></section>
+  <section id="scene9" class="scene" aria-label="Final Message"><div class="content"><p class="placeholder">Final Scene (coming soon)</p></div></section>
+  <section id="scene365" class="scene" aria-label="365 Notes"><div class="content"><p class="placeholder">365 Notes Surprise (coming soon)</p></div></section>
+
+  <script src="js/content.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

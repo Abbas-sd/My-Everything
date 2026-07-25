@@ -1,0 +1,493 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --night-top: #0a0a12;
+  --night-bottom: #020204;
+  --pink: #ff6fae;
+  --purple: #9b5cff;
+  --lavender: #ff9acb;
+  --gold: #ffd369;
+  --text-soft: rgba(255, 255, 255, 0.92);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Quicksand", "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: white;
+  background: radial-gradient(ellipse at 50% 0%, var(--night-top), var(--night-bottom));
+  transition: background 3s ease;
+}
+
+body.journey-sky {
+  background: linear-gradient(160deg, #ff9acb 0%, #9b5cff 45%, #ff6fae 100%);
+}
+
+body.cake-scene {
+  background: linear-gradient(180deg, #1a0824 0%, #3d1454 40%, #ff6fae 100%);
+}
+
+body.letter-scene {
+  background: radial-gradient(ellipse at 50% 30%, #2a1535, #0d0612);
+}
+
+#stars,
+#hearts-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.8s ease, visibility 1.8s ease;
+  z-index: 2;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.content {
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  padding: 2rem;
+  max-width: 920px;
+  width: 100%;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fade-line {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+  transition: opacity 1.6s ease, transform 1.6s ease, visibility 1.6s ease;
+}
+
+.fade-line.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.fade-line.hidden {
+  transform: translateY(12px);
+}
+
+.birthday-line {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  font-weight: 600;
+  margin-top: 2rem;
+  line-height: 1.15;
+  background: linear-gradient(45deg, var(--lavender), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 24px rgba(255, 111, 174, 0.45));
+  transition: opacity 1.8s ease, transform 1.8s ease, visibility 1.8s ease;
+}
+
+.birthday-line.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.birthday-line.hidden {
+  transform: scale(0.96);
+}
+
+.primary-btn {
+  margin-top: 3rem;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(45deg, var(--pink), var(--lavender));
+  color: white;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 0 32px rgba(255, 111, 174, 0.55);
+  transition: opacity 1s ease, transform 0.35s ease, box-shadow 0.35s ease, visibility 1s ease;
+}
+
+.primary-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.primary-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+}
+
+.primary-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 48px rgba(255, 111, 174, 0.75);
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+/* Scene 2 */
+#scene2 {
+  background: transparent;
+}
+
+.journey-content {
+  transform: scale(1);
+  transition: transform 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.journey-content.zoom-in {
+  transform: scale(1.14);
+}
+
+.journey-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  line-height: 1.75;
+  color: white;
+  min-height: 5.5em;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+  white-space: pre-line;
+}
+
+.placeholder {
+  font-size: 1.25rem;
+  opacity: 0.7;
+}
+
+/* Scene 3 – Cake */
+.wish-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-style: italic;
+  margin-bottom: 2rem;
+  color: var(--text-soft);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.wish-text.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cake {
+  position: relative;
+  width: min(280px, 70vw);
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.35s ease;
+  animation: cakeFloat 3s ease-in-out infinite;
+}
+
+.cake:hover {
+  transform: scale(1.04);
+}
+
+.cake.celebrating {
+  animation: cakeCelebrate 0.5s ease;
+}
+
+.candles {
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 14px;
+  z-index: 5;
+}
+
+.candle {
+  width: 8px;
+  height: 36px;
+  background: linear-gradient(180deg, #fff5e6, #ffd369);
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+.flame {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(circle at 50% 80%, #ffd369, #ff6fae 60%, transparent 70%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flameFlicker 0.8s ease-in-out infinite alternate;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cake.blown .flame {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+  animation: none;
+}
+
+.cake-frosting {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 108%;
+  height: 18px;
+  background: #ffb8d9;
+  border-radius: 8px;
+  z-index: 3;
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.cake-layer {
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;
+}
+
+.cake-top {
+  width: 100%;
+  height: 52px;
+  background: linear-gradient(180deg, #ff9acb, #ff6fae);
+  box-shadow: inset 0 4px 12px rgba(255, 255, 255, 0.25);
+}
+
+.cake-middle {
+  width: 88%;
+  height: 44px;
+  background: linear-gradient(180deg, #f48ec4, #e85a9e);
+  margin-top: -4px;
+}
+
+.cake-bottom {
+  width: 76%;
+  height: 40px;
+  background: linear-gradient(180deg, #d84a8a, #b83672);
+  margin-top: -4px;
+}
+
+.cake-plate {
+  width: 120%;
+  height: 14px;
+  margin: 8px auto 0;
+  background: linear-gradient(180deg, #eee, #ccc);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cake-message {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  margin-top: 2.5rem;
+  color: white;
+  text-shadow: 0 0 20px rgba(255, 111, 174, 0.5);
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.cake-message.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scene 4 – Letter */
+.letter-prompt {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  color: var(--text-soft);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.letter-prompt.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.envelope {
+  position: relative;
+  width: min(320px, 85vw);
+  height: 220px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 800px;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #c9956a, #a67c52);
+  border-radius: 4px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130px;
+  background: linear-gradient(180deg, #d4a574, #b8895a);
+  clip-path: polygon(0 100%, 50% 35%, 100% 100%);
+  z-index: 3;
+  transition: opacity 0.4s ease;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: linear-gradient(180deg, #e0b080, #c9956a);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 4;
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  z-index: 5;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.envelope-letter {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 16px;
+  height: 160px;
+  z-index: 2;
+  transition: transform 1s cubic-bezier(0.34, 1.2, 0.64, 1), bottom 1s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .envelope-seal {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+.envelope.open .envelope-front {
+  opacity: 0.3;
+}
+
+.envelope.open .envelope-letter {
+  transform: translateY(-240px);
+  z-index: 6;
+}
+
+.envelope.open .letter-paper {
+  height: auto;
+  min-height: 280px;
+  max-height: min(55vh, 420px);
+}
+
+.letter-paper {
+  background: linear-gradient(180deg, #fffef8 0%, #f5eed9 100%);
+  border-radius: 2px;
+  padding: 1.25rem 1.5rem;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: rotate(-1deg);
+  border: 1px solid rgba(180, 150, 100, 0.3);
+}
+
+.letter-text {
+  font-family: "Caveat", cursive;
+  font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+  line-height: 1.65;
+  color: #3d2c1e;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.mute-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.mute-btn:hover {
+  background: rgba(0, 0, 0, 0.55);
+  transform: scale(1.05);
+}
+
+.mute-btn.muted {
+  opacity: 0.65;
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 1.25rem;
+  }
+
+  .primary-btn {
+    margin-top: 2rem;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+}
