@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>I Love You Fatima ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            position: absolute;
+            inset: 0;
+        }
+
+        .message {
+            position: absolute;
+
+            color: #ffb6c1;
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+                0 0 5px #ffb6c1,
+                0 0 15px #ff69b4,
+                0 0 30px #ff1493,
+                0 0 50px #ff1493;
+
+            opacity: 0;
+
+            animation: messageAppear 3s ease-in-out forwards;
+            animation-delay: 8s;
+
+            z-index: 10;
+        }
+
+        @keyframes messageAppear {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="heartCanvas"></canvas>
+
+<div class="message">
+    I LOVE YOU FATIMA ❤️
+</div>
+
+<script>
+
+    const canvas = document.getElementById("heartCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+
+    /*
+        HEART SETTINGS
+    */
+
+    const points = [];
+
+    const scale = Math.min(
+        window.innerWidth,
+        window.innerHeight
+    ) / 40;
+
+
+    /*
+        CREATE HEART
+    */
+
+    for (let i = 0; i < 360; i++) {
+
+        const angle = i * Math.PI / 180;
+
+        const x =
+            16 * Math.pow(Math.sin(angle), 3);
+
+        const y =
+            13 * Math.cos(angle)
+            - 5 * Math.cos(2 * angle)
+            - 2 * Math.cos(3 * angle)
+            - Math.cos(4 * angle);
+
+        points.push({
+            x: x * scale,
+            y: -y * scale
+        });
+    }
+
+
+    /*
+        DRAWING PROGRESS
+    */
+
+    let progress = 0;
+
+
+    function drawHeart() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+
+        /*
+            HOW MANY POINTS TO DRAW
+        */
+
+        const visiblePoints =
+            Math.floor(progress * points.length);
+
+
+        /*
+            DRAW HEART
+        */
+
+        for (let i = 0; i < visiblePoints; i++) {
+
+            const p = points[i];
+
+            ctx.save();
+
+            ctx.translate(
+                centerX + p.x,
+                centerY + p.y
+            );
+
+
+            ctx.font = "bold 10px Arial";
+
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+
+            ctx.fillStyle = "#ffb6c1";
+
+
+            ctx.shadowColor = "#ff1493";
+            ctx.shadowBlur = 12;
+
+
+            ctx.fillText(
+                "I love you",
+                0,
+                0
+            );
+
+
+            ctx.restore();
+        }
+
+
+        /*
+            SLOW DRAWING
+        */
+
+        if (progress < 1) {
+
+            progress += 0.0015;
+
+            requestAnimationFrame(drawHeart);
+
+        }
+
+    }
+
+
+    drawHeart();
+
+
+    /*
+        RESIZE
+    */
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
